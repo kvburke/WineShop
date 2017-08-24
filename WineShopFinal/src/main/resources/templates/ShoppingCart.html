@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+<meta charset="UTF-8"/>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+
+
+
+
+<title>Wine Store</title>
+
+
+</head>
+<body>
+<b>Wine Shop</b>
+<form id="shoppingcart">
+ID: <input id="id" type="text" name="id"><br>
+Account: <input id="account" type="text" name="account"><br>
+Name: <input id="name" type="text" name="name"><br>
+Price: <input id="price" type="text" name="price"><br>
+Quantity: <input id="quantity" type="text" name="quantity"><br>
+Username: <input id="username" type="text" name="username"><br>
+Brand: <input id="brand" type="text" name="brand"><br>
+Url: <input id="url" type="text" name="url"><br>
+</form>
+
+
+<b>Inventory</b>
+<div id=1 ng-app="myApp" ng-controller="customersCtrl">
+<table border="1" style="width:100%">
+<tr>
+<th>Idx</th>
+<th>Id</th>
+<th>Url</th>
+<th>Brand</th>
+<th>Name</th>
+<th>Price</th>
+<th>Quantity</th>
+</tr>
+<tr ng-repeat="y in namestwo">
+<td width="12.5%">{{y.idx}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.id}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.id, y.url, y.brand, y.name, y.price, y.quantity)"><img src="{{y.url}}"/></td>
+<td width="12.5%" ng-click="selectInfo2(y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.brand}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.name}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.price}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.quantity}}</td></tr>
+</table>
+</div>
+
+
+
+
+</body>
+
+
+<button id="load">Load</button>
+
+
+<button id="addWineInventory">Add</button>
+<button id="removeWineInventory">Remove</button>
+
+
+<a href="http://localhost:8080/shoppingcart2">Shopping Cart</a>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="shoppingcart.js"></script>
+<script src="shoppingcart2.js"></script>
+<script src="shoppingcart3.js"></script>
+<script>
+var output=localStorage.getItem('label');
+alert(output);
+$('#username').val(output);
+var user = $('#username').val();
+setTimeout(function(){
+$.getJSON('http://localhost:8080/getaccountid?name='+user, function(data) {
+    $('#account').val(data[0].account);
+},3000);
+    
+    
+ 
+ });
+
+
+
+setTimeout(function() {
+	httpGetAsync();
+}, 4000);
+
+
+
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "http://localhost:8080/addaccount?account="+document.getElementsByName('account')[0].value, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+
+
+</script>
+
+
+
+</body>
+</html>

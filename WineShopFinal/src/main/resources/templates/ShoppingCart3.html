@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+<meta charset="UTF-8"/>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+
+
+
+
+<title>Wine Store</title>
+
+
+</head>
+<body>
+<b>Wine Shop</b>
+<form id="shoppingcart">
+<input id="idx" type="text" name="id"><br>
+<input id="id" type="text" name="id"><br>
+ <input id="account" type="text" name="account"><br>
+ <input id="name" type="text" name="name"><br>
+ <input id="price" type="text" name="price"><br>
+ <input id="quantity" type="text" name="quantity"><br>
+ <input id="username" type="text" name="username"><br>
+ <input id="brand" type="text" name="brand"><br>
+ <input id="url" type="text" name="url"><br>
+</form>
+
+
+<b>Inventory</b>
+<div id=1 ng-app="myApp4" ng-controller="customersCtrl">
+<table border="1" style="width:100%">
+<tr>
+
+<!--th>Id</th-->
+<!--th>Name</th-->
+<th>Quantity Left</th>
+<th>Brand</th>
+<th>Url</th>
+<th>Price</th>
+
+</tr>
+<tr ng-repeat="y in namesthree">
+<!--td width="20.0%" ng-click="selectInfo(y.id, y.name, y.sum, y.brand, y.price, y.url)">{{y.id}}</td>--!>
+<!--td width="20.0%" ng-click="selectInfo(y.id, y.name, y.sum, y.brand, y.price, y.url)">{{y.name}}</td>-->
+<td width="25.0%" ng-click="selectInfo(y.id, y.name, y.sum, y.brand, y.price, y.url)">{{y.sum}}</td>
+<td width="25.0%" ng-click="selectInfo(y.id, y.name, y.sum, y.brand, y.price, y.url)">{{y.brand}}</td>
+<td width="25.0%" ng-click="selectInfo(y.id, y.name, y.sum, y.brand, y.price, y.url)"><img src="{{y.url}}"/></td>
+<td width="25.0%" ng-click="selectInfo(y.id, y.name, y.sum, y.brand, y.price, y.url)">{{y.price}}</td></tr>
+</table>
+</div>
+
+
+
+
+<button id="add">Add</button>
+<button id="remove">Remove</button>
+
+
+
+
+
+
+
+<a href="http://localhost:8080/shoppingcart2">Shopping Cart</a>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="shoppingcart.js"></script>
+<script src="shoppingcart3.js"></script>
+<script>
+var output=localStorage.getItem('label');
+alert(output);
+$('#username').val(output);
+var user = $('#username').val();
+setTimeout(function(){
+$.getJSON('http://localhost:8080/getaccountid?name='+user, function(data) {
+    $('#account').val(data[0].account);
+},3000);
+    
+    
+ 
+ });
+
+setTimeout(function() {
+	httpGetAsync();
+}, 4000);
+
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() { 
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", "http://localhost:8080/addaccount?account="+document.getElementsByName('account')[0].value, true); // true for asynchronous 
+    xmlHttp.send(null);
+}
+
+</script>
+</body>
+</html>

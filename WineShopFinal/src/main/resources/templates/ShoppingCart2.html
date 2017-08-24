@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+
+
+<title>Shopping Cart</title>
+</head>
+<body>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+<a href="http://localhost:8080/shoppingcart">Back</a>
+<b>Wine Shop</b>
+<form id="shoppingcart">
+IDx: <input id="idx" type="text" name="idx"><br>
+ID: <input id="id" type="text" name="id"><br>
+Account: <input id="account" type="text" name="account"><br>
+Name: <input id="name" type="text" name="name"><br>
+Price: <input id="price" type="text" name="price"><br>
+Quantity: <input id="quantity" type="text" name="quantity"><br>
+Username: <input id="username" type="text" name="username"><br>
+Brand: <input id="brand" type="text" name="brand"><br>
+Url: <input id="url" type="text" name="url"><br>
+</form>
+
+
+
+
+<b>Shopping Cart</b>
+<div id=1 ng-app="myApp2" ng-controller="customersCtrl">
+<table border="1" style="width:100%">
+<tr>
+<th>Idx</th>
+<th>Id</th>
+<th>Url</th>
+<th>Brand</th>
+<th>Name</th>
+<th>Price</th>
+<th>Quantity</th>
+</tr>
+<tr ng-repeat="y in namestwo">
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)">>{{y.idx}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.id}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)"><img ng-src="{{y.url}}"/></td>
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.brand}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.name}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.price}}</td>
+<td width="12.5%" ng-click="selectInfo2(y.idx, y.id, y.url, y.brand, y.name, y.price, y.quantity)">{{y.quantity}}</td></tr>
+</table>
+</div>
+<br>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Total</th>
+        
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: customerList">
+        <tr>
+            <td data-bind="text: total"></td>
+           
+        </tr>
+    </tbody>
+</table>
+<br/>
+
+<input type="button" id="btnGetCustomers" value="Total" data-bind="click: getCustomers">
+
+
+
+
+
+<div id="result" style="color:red"></div>
+
+
+<button id="add">Add</button>
+<button id="remove">Remove</button>
+<br></br>
+<button id="buy">Buy</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+<script src="knockoutmapping.js"></script>
+
+<script src="shoppingcart.js"></script>
+<script src="shoppingcart2.js"></script>
+<script src="shoppingcart2b.js"></script>
+<script src="shoppingcart3.js"></script>
+<script src="buy.js"></script>
+<script>
+var output=localStorage.getItem('label');
+alert(output);
+$('#username').val(output);
+var user = $('#username').val();
+setTimeout(function(){
+$.getJSON('http://localhost:8080/getaccountid?name='+user, function(data) {
+    $('#account').val(data[0].account);
+},3000);
+    
+    
+ 
+ });
+
+
+
+</script>
+
+</body>
+
+</html>

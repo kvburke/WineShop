@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+
+ 
+
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.example.demo.Users" table="Users">
+
+  <id name="username" column="username">
+
+
+
+
+
+  </id>
+  
+  <property name="password" not-null="true" length= "100" />
+
+  
+  <property name="enabled" not-null="true" length= "50" />
+  
+  
+   <property name="account" not-null="true" length= "50" />
+
+  
+    </class>
+
+</hibernate-mapping>

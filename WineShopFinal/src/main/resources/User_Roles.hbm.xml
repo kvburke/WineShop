@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+
+ 
+
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.example.demo.User_Roles" table="User_Roles">
+
+  <id name="user_role_id" column="user_role_id">
+
+<generator class="native"/>
+
+
+
+  </id>
+  
+  <property name="username" not-null="true" length= "100" />
+
+  <property name="role" not-null="true" length= "50" />
+
+  
+    </class>
+
+</hibernate-mapping>
