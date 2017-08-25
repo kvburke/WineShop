@@ -21,7 +21,7 @@ import com.example.demo.Wine;
 @Controller
 public class WebController {
 	
-WebService Service = new WebService();	
+WebServiceI Service = new WebService();	
 	
 	
 	static ConcurrentHashMap<Integer, Account> accounts= new ConcurrentHashMap<Integer, Account>();

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Repository
-public class WebRepo{
+public class WebRepo implements WebRepoI{
 
 	
 	
@@ -37,6 +37,10 @@ ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 	private  JdbcTemplate jdbcTemplateObject = (JdbcTemplate)context.getBean("jdbcTemplate"); 
 	
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#addAccount(int)
+ */
+@Override
 public void addAccount(int  account){
 	Integer accountnumber=accounts.size();
 	accounts.put(account, new Account(accountnumber ,accountnumber, "username"));
@@ -49,6 +53,10 @@ public void addAccount(int  account){
 }
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#addAccount(java.lang.String)
+ */
+@Override
 public  List<AccountInventory> addAccount(String  name){
 	String SQL = "SELECT account FROM inventory.users WHERE username='"+name+"'";
 	List<AccountInventory> rows = new ArrayList<AccountInventory>();
@@ -104,6 +112,10 @@ public static void addUser(String username, String password){
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#buyWine(int, int, java.lang.String, java.lang.String, java.lang.String, double, int, java.lang.String)
+ */
+@Override
 public  ArrayList<Purchased> buyWine(int id, int account, String username, String name, String brand, double price, int quantity,  String url){	
 
 	SessionFactory sessionFactory;
@@ -185,6 +197,10 @@ return account1.getShoppingCart().getWineNamesandPrices();
 }
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#buyWineInventory(int, int, java.lang.String, java.lang.String, java.lang.String, double, int, java.lang.String)
+ */
+@Override
 public  ArrayList<Purchased> buyWineInventory(int id, int account, String username, String name, String brand, double price, int quantity,  String url){	
 
 	SessionFactory sessionFactory;
@@ -268,6 +284,10 @@ return account1.getShoppingCart().getWineNamesandPrices();
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#removeWine(int, int, int, java.lang.String, double, int, java.lang.String, java.lang.String)
+ */
+@Override
 public  ArrayList<Purchased> removeWine(int idx, int id, int account, String name, double price, int quantity,  String url, String brand)
 {
 	
@@ -397,6 +417,10 @@ public  ArrayList<Purchased> removeWine(int idx, int id, int account, String nam
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#removeWineInventory(int, int, java.lang.String, double, int)
+ */
+@Override
 public ArrayList<Purchased> removeWineInventory(int id, int account, String name, double price, int quantity)
 {
 	
@@ -476,6 +500,10 @@ public ArrayList<Purchased> removeWineInventory(int id, int account, String name
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#displayInventory()
+ */
+@Override
 public   List<WineInventory> displayInventory(){
 	String SQL = "SELECT  sum(quantity), brand, url, price FROM inventory.wine group by brand, url, price;";
 	List<WineInventory> rows = new ArrayList<WineInventory>();
@@ -489,6 +517,10 @@ return rows;
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#displayWines(int)
+ */
+@Override
 public  List<Wine> displayWines(int account){
 Account generalaccount = new Account();
 //Account generalaccount= accounts.get(account);
@@ -505,6 +537,10 @@ return wines;
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#displayPurchased(int)
+ */
+@Override
 public  List<Purchased> displayPurchased(int account){
 Account generalaccount= accounts.get(account);
 //List<Purchased> wines =generalaccount.getShoppingCart().getPurchasedDatabase(); important function maybe
@@ -520,6 +556,10 @@ return wines;
 
 
 
+/* (non-Javadoc)
+ * @see com.example.demo.WebRepoI#getTotal(int)
+ */
+@Override
 public List<Total> getTotal(int account){
 	Total total = new Total();
 	List<Total> totallist= new ArrayList<Total>();
@@ -533,6 +573,10 @@ public List<Total> getTotal(int account){
 
 
 
+	/* (non-Javadoc)
+	 * @see com.example.demo.WebRepoI#buy(int)
+	 */
+	@Override
 	public void buy(int account){
 		
 		Account generalaccount = accounts.get(account);
