@@ -34,4 +34,6 @@ public interface WebRepoI {
 
 	public abstract void buy(int account);
 
+	public abstract void addUser(String username, String password);
+
 }

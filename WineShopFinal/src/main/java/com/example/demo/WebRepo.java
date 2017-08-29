@@ -27,9 +27,9 @@ public class WebRepo implements WebRepoI{
 	
 	
 
-	static ConcurrentHashMap<Integer, Account> accounts= new ConcurrentHashMap<Integer, Account>();
+	 static ConcurrentHashMap<Integer, Account> accounts= new ConcurrentHashMap<Integer, Account>();
 	
-	@Autowired
+	
 	
 	
 ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -68,8 +68,8 @@ public  List<AccountInventory> addAccount(String  name){
 }
 
 
-
-public static void addUser(String username, String password){
+@Override
+public void addUser(String username, String password){
 	Random rand = new Random();
 	SessionFactory sessionFactory;
 	
